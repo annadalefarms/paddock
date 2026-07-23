@@ -674,7 +674,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 :root{
   --ground:#0E1116; --panel:#171C24; --panel-hi:#1F2631; --line:#2A323F;
   --text:#E8ECF2; --text-dim:#8A94A6;
-  --worked:#17D46A; --live:#FFB020; --stop:#FF3B30; --fix:#35C4FF; --bound:#8A94A6;
+  --worked:#17D46A; --live:#FFB020; --stop:#FF3B30; --fix:#35C4FF;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--ground);color:var(--text);
@@ -683,8 +683,8 @@ html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--ground
 #map{position:absolute;inset:0;background:var(--ground)}
 .leaflet-container{background:var(--ground);font-family:inherit}
 .leaflet-control-attribution{display:none}
-.pname{background:none;border:0;box-shadow:none;color:#C8D2E0;font:700 11px/1 -apple-system,sans-serif;
-  text-shadow:0 0 4px #000,0 0 4px #000,0 1px 2px #000;white-space:nowrap;padding:0}
+.pname{background:none;border:0;box-shadow:none;color:#EAF0F8;font:700 11px/1 -apple-system,sans-serif;
+  text-shadow:0 0 4px #000,0 0 4px #000,0 0 6px #000,0 1px 2px #000;white-space:nowrap;padding:0}
 .pname::before{display:none}
 
 #status{position:absolute;top:0;left:0;right:0;z-index:600;
@@ -694,15 +694,17 @@ html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--ground
 #statelamp{width:12px;height:12px;border-radius:50%;background:var(--text-dim);flex:none}
 body.rec #statelamp{background:var(--live);animation:pulse 1.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,176,32,.55)}70%{box-shadow:0 0 0 14px rgba(255,176,32,0)}100%{box-shadow:0 0 0 0 rgba(255,176,32,0)}}
-#statetext{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim)}
+#statetext{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim);
+  text-shadow:0 1px 3px #000}
 body.rec #statetext{color:var(--live)}
-#gps{margin-left:auto;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text-dim);text-align:right}
+#gps{margin-left:auto;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text-dim);
+  text-align:right;text-shadow:0 1px 3px #000}
 #gps b{display:block;font-size:15px;color:var(--text);margin-bottom:3px}
 #gps.bad b{color:var(--stop)} #gps.ok b{color:var(--fix)}
 
 #readout{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 104px);z-index:600;
   display:flex;gap:1px;padding:0 10px;pointer-events:none}
-.cell{flex:1;background:rgba(23,28,36,.92);border-top:2px solid var(--line);padding:7px 9px 8px}
+.cell{flex:1;background:rgba(23,28,36,.94);border-top:2px solid var(--line);padding:7px 9px 8px}
 .cell:first-child{border-radius:6px 0 0 6px} .cell:last-child{border-radius:0 6px 6px 0}
 .cell .k{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
 .cell .v{font:700 19px/1.15 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin-top:3px}
@@ -735,6 +737,7 @@ body.rec #go:active{box-shadow:0 2px 0 #a8241c}
 .sec:first-of-type{margin-top:2px}
 .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(42,50,63,.5)}
 .row:last-child{border-bottom:0}
+.row.stack{display:block}
 .row .lbl{flex:1;font-size:14px;font-weight:600}
 .row .lbl em{display:block;font-style:normal;font-size:11.5px;color:var(--text-dim);font-weight:400;margin-top:3px;line-height:1.45}
 .btn{padding:10px 15px;border-radius:8px;border:1px solid var(--line);background:var(--panel-hi);color:var(--text);
@@ -742,12 +745,17 @@ body.rec #go:active{box-shadow:0 2px 0 #a8241c}
 .btn:active{background:#2A323F}
 .btn.warn{border-color:#5A2320;color:#FF8A80;background:#221315}
 .btn.pri{background:var(--fix);color:#04121A;border-color:var(--fix)}
+.seg{display:flex;margin-top:11px;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{flex:1;padding:13px 6px;background:var(--panel-hi);color:var(--text-dim);border:0;
+  border-right:1px solid var(--line);font:700 12px/1 -apple-system,sans-serif;letter-spacing:.05em}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--fix);color:#04121A}
 input[type=number]{width:80px;padding:10px;border-radius:8px;border:1px solid var(--line);
   background:var(--panel-hi);color:var(--text);font:700 15px ui-monospace,monospace;text-align:center}
 input[type=file]{display:none}
-input[type=range]{-webkit-appearance:none;appearance:none;width:120px;height:5px;border-radius:3px;background:var(--line);outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--fix);cursor:pointer}
-input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radius:50%;background:var(--fix)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:130px;height:5px;border-radius:3px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--fix)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:var(--fix)}
 .sw{width:50px;height:29px;border-radius:15px;background:var(--line);position:relative;flex:none;transition:background .18s}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:23px;height:23px;border-radius:50%;background:var(--text);transition:transform .18s}
 .sw.on{background:var(--fix)} .sw.on::after{transform:translateX(21px)}
@@ -756,6 +764,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radiu
 .runrow b{color:var(--text)}
 .runrow .x{margin-left:auto;padding:6px 10px;border-radius:6px;background:#221315;color:#FF8A80;border:1px solid #5A2320;font:700 10px -apple-system,sans-serif}
 #empty{color:var(--text-dim);font-size:12.5px;padding:14px 0;text-align:center;line-height:1.5}
+#ver{text-align:center;color:var(--text-dim);font:600 11px ui-monospace,monospace;padding:16px 0 0;opacity:.6}
 
 #toast{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 200px);
   z-index:900;background:var(--panel-hi);border:1px solid var(--line);color:var(--text);padding:12px 18px;
@@ -795,28 +804,23 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radiu
 <div id="sheet"><div id="sheetin">
   <div id="grab"></div>
 
-  <div class="sec">Background image</div>
-  <div class="row">
-    <div class="lbl">Load image + world file<em>Select the .png/.jpg <b>and</b> its .pgw/.jgw together. Must be exported from QGIS with the project CRS set to EPSG:4326.</em></div>
-    <button class="btn pri" id="imgbtn">Load</button>
-    <input type="file" id="imgin" accept=".png,.jpg,.jpeg,.pgw,.jgw,.wld,.pngw,.jpgw" multiple>
+  <div class="sec">Background</div>
+  <div class="row stack">
+    <div class="lbl">Map layer<em>Satellite and simple map both need reception. Plain works anywhere — your boundaries and worked lines are stored on the device and always draw.</em></div>
+    <div class="seg">
+      <button data-base="off">Plain</button>
+      <button data-base="simple">Simple</button>
+      <button data-base="sat">Satellite</button>
+    </div>
   </div>
   <div class="row">
-    <div class="lbl">Show background<em id="imginfo">None loaded</em></div>
-    <div class="sw" id="imgsw"></div>
-  </div>
-  <div class="row">
-    <div class="lbl">Brightness<em>Fade it back so the worked line stays the brightest thing on screen.</em></div>
-    <input type="range" id="imgop" min="10" max="100" step="5" value="70">
-  </div>
-  <div class="row">
-    <div class="lbl">Remove image<em>Frees up device storage.</em></div>
-    <button class="btn warn" id="imgdel">Remove</button>
+    <div class="lbl">Brightness<em>Fade the background so the worked line stays the brightest thing on screen.</em></div>
+    <input type="range" id="baseop" min="15" max="100" step="5" value="70">
   </div>
 
   <div class="sec">Paddock boundaries</div>
   <div class="row">
-    <div class="lbl">Load boundary file<em>Zipped shapefile or GeoJSON. Stored on this device.</em></div>
+    <div class="lbl">Load boundary file<em>Zipped shapefile or GeoJSON. Stored on this device — load once at the house and it works with no reception.</em></div>
     <button class="btn pri" id="loadbtn">Load</button>
     <input type="file" id="filein" accept=".zip,.json,.geojson">
   </div>
@@ -835,11 +839,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radiu
     <input type="number" id="swath" min="1" max="60" step="0.5" value="6">
   </div>
 
-  <div class="sec">Map</div>
-  <div class="row">
-    <div class="lbl">Satellite tiles<em>Needs reception. Use the background image instead when you're out of range.</em></div>
-    <div class="sw" id="basesw"></div>
-  </div>
+  <div class="sec">Device</div>
   <div class="row">
     <div class="lbl">Keep screen awake<em>Tracking stops if the screen locks.</em></div>
     <div class="sw on" id="wakesw"></div>
@@ -850,7 +850,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radiu
 
   <div class="sec">Data</div>
   <div class="row">
-    <div class="lbl">Export tracks<em>GeoJSON lines for QGIS.</em></div>
+    <div class="lbl">Export tracks<em>GeoJSON lines for QGIS. Do this before clearing browser data — that wipes everything stored here.</em></div>
     <button class="btn pri" id="export">Export</button>
   </div>
   <div class="row">
@@ -861,6 +861,7 @@ input[type=range]::-moz-range-thumb{width:24px;height:24px;border:0;border-radiu
   <div class="row" style="border:0;padding-top:18px">
     <button class="btn" id="close" style="width:100%;padding:15px">Close</button>
   </div>
+  <div id="ver">Version 3</div>
 </div></div>
 
 <div id="toast"></div>
@@ -898,50 +899,67 @@ https://github.com/nodeca/pako/blob/master/LICENSE
 (function(){
 "use strict";
 
+var VERSION = 3;
 var K = {runs:"apt_runs", bounds:"apt_bounds", cfg:"apt_cfg"};
-var cfg = load(K.cfg) || {swath:6, base:false, wake:true, img:true, imgop:70, labels:true};
-if(cfg.img === undefined) cfg.img = true;
-if(cfg.imgop === undefined) cfg.imgop = 70;
-if(cfg.labels === undefined) cfg.labels = true;
+
+// v2 stored a background image in IndexedDB; that feature is gone, so reclaim the space.
+try{ indexedDB.deleteDatabase("apt_store"); }catch(e){}
+
+var cfg = load(K.cfg) || {};
+if(typeof cfg.swath  !== "number") cfg.swath  = 6;
+if(typeof cfg.baseop !== "number") cfg.baseop = 70;
+if(typeof cfg.wake   !== "boolean") cfg.wake  = true;
+if(typeof cfg.labels !== "boolean") cfg.labels= true;
+if(["off","simple","sat"].indexOf(cfg.base) === -1) cfg.base = "off";  // v2 stored a boolean here
 
 var runs = load(K.runs) || [];
 var bounds = load(K.bounds) || null;
 var rec=false, cur=null, curLine=null, follow=true, wakeRef=null;
-var watchId=null, lastPt=null, lastAcc=null;
-var map, imgLayer=null, imgRec=null, boundLayer, labelLayer, workedLayer, liveLayer, meMark, meAcc, baseLayer;
+var lastPt=null, lastAcc=null;
+var map, baseLayer=null, boundLayer, labelLayer, workedLayer, liveLayer, meMark, meAcc;
 
 function load(k){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):null; }catch(e){ return null; } }
-function save(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }
+function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }
   catch(e){ toast("Device storage full — export and clear old runs"); return false; } }
 function $(id){ return document.getElementById(id); }
 
 var toastT;
-function toast(m, ms){ var el=$("toast"); el.textContent=m; el.classList.add("show");
+function toast(m,ms){ var el=$("toast"); el.textContent=m; el.classList.add("show");
   clearTimeout(toastT); toastT=setTimeout(function(){ el.classList.remove("show"); }, ms||2800); }
 
-/* ---------- IndexedDB (background image is too big for localStorage) ---------- */
-function db(){ return new Promise(function(res,rej){
-  var r = indexedDB.open("apt_store", 1);
-  r.onupgradeneeded = function(){ r.result.createObjectStore("kv"); };
-  r.onsuccess = function(){ res(r.result); }; r.onerror = function(){ rej(r.error); };
-});}
-function dbSet(k,v){ return db().then(function(d){ return new Promise(function(res,rej){
-  var t=d.transaction("kv","readwrite"); t.objectStore("kv").put(v,k);
-  t.oncomplete=function(){res();}; t.onerror=function(){rej(t.error);}; });});}
-function dbGet(k){ return db().then(function(d){ return new Promise(function(res,rej){
-  var t=d.transaction("kv","readonly"), q=t.objectStore("kv").get(k);
-  q.onsuccess=function(){res(q.result);}; q.onerror=function(){rej(q.error);}; });});}
-function dbDel(k){ return db().then(function(d){ return new Promise(function(res){
-  var t=d.transaction("kv","readwrite"); t.objectStore("kv").delete(k); t.oncomplete=function(){res();}; });});}
-
 /* ---------- map ---------- */
-map = L.map("map", {zoomControl:false, attributionControl:false, tap:false}).setView([-30.72,116.35], 13);
+map = L.map("map",{zoomControl:false, attributionControl:false, tap:false}).setView([-30.72,116.35],13);
 map.on("dragstart", function(){ if(follow) setFollow(false); });
 
 boundLayer  = L.layerGroup().addTo(map);
 labelLayer  = L.layerGroup().addTo(map);
 workedLayer = L.layerGroup().addTo(map);
 liveLayer   = L.layerGroup().addTo(map);
+
+var BASES = {
+  simple:{url:"https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", max:19},
+  sat:{url:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", max:19}
+};
+function setBase(kind){
+  cfg.base = kind; save(K.cfg,cfg);
+  Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function(b){
+    b.classList.toggle("on", b.dataset.base === kind);
+  });
+  if(baseLayer){ map.removeLayer(baseLayer); baseLayer=null; }
+  var d = BASES[kind];
+  if(!d) return;
+  baseLayer = L.tileLayer(d.url, {maxZoom:d.max, opacity:cfg.baseop/100, crossOrigin:true}).addTo(map);
+  baseLayer.bringToBack();
+}
+Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function(b){
+  b.onclick = function(){
+    setBase(b.dataset.base);
+    if(b.dataset.base !== "off") toast("Needs reception — tiles won't load out of range", 3200);
+  };
+});
+$("baseop").value = cfg.baseop;
+$("baseop").oninput = function(){ cfg.baseop=+this.value; if(baseLayer) baseLayer.setOpacity(cfg.baseop/100); };
+$("baseop").onchange = function(){ save(K.cfg,cfg); };
 
 function mPerPx(){ return 40075016.686*Math.abs(Math.cos(map.getCenter().lat*Math.PI/180))/Math.pow(2,map.getZoom()+8); }
 function swathPx(){ return Math.max(3, cfg.swath/mPerPx()); }
@@ -950,133 +968,44 @@ function reweight(){ var w=swathPx();
   if(curLine) curLine.setStyle({weight:w}); }
 map.on("zoomend", reweight);
 
-/* ---------- background image ---------- */
-function showImage(){
-  if(imgLayer){ map.removeLayer(imgLayer); imgLayer=null; }
-  if(!imgRec || !cfg.img) return;
-  var url = URL.createObjectURL(imgRec.blob);
-  imgLayer = L.imageOverlay(url, imgRec.bounds, {opacity: cfg.imgop/100, interactive:false}).addTo(map);
-  imgLayer.bringToBack();
-  if(baseLayer) baseLayer.bringToBack();
-}
-function loadStoredImage(){
-  dbGet("backdrop").then(function(r){
-    if(!r) { $("imginfo").textContent = "None loaded"; return; }
-    imgRec = r;
-    $("imginfo").textContent = r.name + " — " + r.w + "×" + r.h + " px";
-    showImage();
-    if(!bounds && !lastPt) map.fitBounds(r.bounds, {padding:[20,20]});
-  }).catch(function(){});
-}
-
-function parseWorld(txt){
-  var v = txt.trim().split(/\s+/).map(parseFloat);
-  if(v.length < 6 || v.some(isNaN)) return null;
-  return {A:v[0], D:v[1], B:v[2], E:v[3], C:v[4], F:v[5]};
-}
-
-$("imgbtn").onclick = function(){ $("imgin").click(); };
-$("imgin").onchange = function(e){
-  var fs = Array.prototype.slice.call(e.target.files);
-  e.target.value = "";
-  var imgF = fs.filter(function(f){ return /\.(png|jpe?g)$/i.test(f.name); })[0];
-  var wldF = fs.filter(function(f){ return /\.(pgw|jgw|wld|pngw|jpgw)$/i.test(f.name); })[0];
-  if(!imgF){ toast("Pick a .png or .jpg as well"); return; }
-  if(!wldF){ toast("Pick the matching .pgw / .jgw world file too — without it there's no way to place the image", 6000); return; }
-
-  toast("Reading image…", 8000);
-  var rw = new FileReader();
-  rw.onload = function(){
-    var w = parseWorld(rw.result);
-    if(!w){ toast("That world file didn't parse"); return; }
-    if(Math.abs(w.C) > 180 || Math.abs(w.F) > 90){
-      toast("World file is in projected metres, not degrees. Re-export from QGIS with project CRS = EPSG:4326.", 9000);
-      return;
-    }
-    var img = new Image(), url = URL.createObjectURL(imgF);
-    img.onload = function(){
-      var west  = w.C - w.A/2;
-      var north = w.F - w.E/2;
-      var east  = west  + img.width  * w.A;
-      var south = north + img.height * w.E;
-      URL.revokeObjectURL(url);
-      var rec = {blob:imgF, name:imgF.name, w:img.width, h:img.height,
-                 bounds:[[Math.min(south,north), Math.min(west,east)],
-                         [Math.max(south,north), Math.max(west,east)]]};
-      dbSet("backdrop", rec).then(function(){
-        imgRec = rec;
-        cfg.img = true; $("imgsw").classList.add("on"); save(K.cfg,cfg);
-        $("imginfo").textContent = rec.name + " — " + rec.w + "×" + rec.h + " px";
-        showImage();
-        map.fitBounds(rec.bounds, {padding:[20,20]});
-        toast("Background image loaded");
-      }).catch(function(){ toast("Couldn't store the image — it may be too large"); });
-    };
-    img.onerror = function(){ toast("Couldn't read that image"); };
-    img.src = url;
-  };
-  rw.onerror = function(){ toast("Couldn't read the world file"); };
-  rw.readAsText(wldF);
-};
-
-$("imgsw").classList.toggle("on", !!cfg.img);
-$("imgsw").onclick = function(){ cfg.img=!cfg.img; this.classList.toggle("on",cfg.img); save(K.cfg,cfg); showImage(); };
-$("imgop").value = cfg.imgop;
-$("imgop").oninput = function(){ cfg.imgop=+this.value; if(imgLayer) imgLayer.setOpacity(cfg.imgop/100); };
-$("imgop").onchange = function(){ save(K.cfg,cfg); };
-$("imgdel").onclick = function(){
-  if(!imgRec) return;
-  if(!confirm("Remove the background image from this device?")) return;
-  dbDel("backdrop").then(function(){
-    imgRec=null; if(imgLayer){ map.removeLayer(imgLayer); imgLayer=null; }
-    $("imginfo").textContent="None loaded"; toast("Background image removed");
-  });
-};
-
 /* ---------- boundaries + labels ---------- */
-var NAMEKEYS = ["name","Name","NAME","paddock","Paddock","PADDOCK","field","Field","FIELD",
-                "PADDOCK_NA","Paddock_Na","label","Label","LABEL","id","ID"];
-function nameOf(props){
-  if(!props) return null;
-  for(var i=0;i<NAMEKEYS.length;i++){ var v=props[NAMEKEYS[i]]; if(v!=null && String(v).trim()) return String(v).trim(); }
-  return null;
-}
+var NAMEKEYS=["name","Name","NAME","paddock","Paddock","PADDOCK","field","Field","FIELD",
+              "PADDOCK_NA","Paddock_Na","label","Label","LABEL","id","ID"];
+function nameOf(p){ if(!p) return null;
+  for(var i=0;i<NAMEKEYS.length;i++){ var v=p[NAMEKEYS[i]]; if(v!=null && String(v).trim()) return String(v).trim(); }
+  return null; }
 function drawBounds(){
   boundLayer.clearLayers(); labelLayer.clearLayers();
   if(!bounds){ $("boundinfo").textContent="No boundaries loaded"; return; }
   var n=0, named=0;
-  var gj = L.geoJSON(bounds, {
-    style:{color:"#8A94A6", weight:1.6, opacity:.95, fill:false},
-    onEachFeature:function(f, layer){
+  var gj = L.geoJSON(bounds,{
+    style:{color:"#C3CCDA", weight:1.8, opacity:.95, fill:false},
+    onEachFeature:function(f,layer){
       n++;
-      var nm = nameOf(f.properties);
-      if(nm && layer.getBounds){
-        named++;
-        L.marker(layer.getBounds().getCenter(), {interactive:false, opacity:0})
-         .bindTooltip(nm, {permanent:true, direction:"center", className:"pname"})
-         .addTo(labelLayer);
-      }
+      var nm=nameOf(f.properties);
+      if(nm && layer.getBounds){ named++;
+        L.marker(layer.getBounds().getCenter(),{interactive:false,opacity:0})
+         .bindTooltip(nm,{permanent:true,direction:"center",className:"pname"}).addTo(labelLayer); }
     }
   }).addTo(boundLayer);
-  $("boundinfo").textContent = n + " boundaries, " + named + " named";
-  labelLayer.eachLayer(function(l){ l.setOpacity(0); });
+  $("boundinfo").textContent = n+" boundaries, "+named+" named";
   applyLabels();
-  try{ var b=gj.getBounds(); if(b.isValid() && !lastPt && !imgRec) map.fitBounds(b,{padding:[30,30]}); }catch(e){}
+  try{ var b=gj.getBounds(); if(b.isValid() && !lastPt) map.fitBounds(b,{padding:[30,30]}); }catch(e){}
 }
 function applyLabels(){ if(cfg.labels){ if(!map.hasLayer(labelLayer)) map.addLayer(labelLayer); }
   else if(map.hasLayer(labelLayer)) map.removeLayer(labelLayer); }
-$("labsw").classList.toggle("on", !!cfg.labels);
-$("labsw").onclick = function(){ cfg.labels=!cfg.labels; this.classList.toggle("on",cfg.labels); save(K.cfg,cfg); applyLabels(); };
+$("labsw").classList.toggle("on",!!cfg.labels);
+$("labsw").onclick=function(){ cfg.labels=!cfg.labels; this.classList.toggle("on",cfg.labels); save(K.cfg,cfg); applyLabels(); };
 
 function ingest(gj){
-  if(Array.isArray(gj)) gj={type:"FeatureCollection", features:gj.reduce(function(a,c){return a.concat(c.features||[]);},[])};
+  if(Array.isArray(gj)) gj={type:"FeatureCollection",features:gj.reduce(function(a,c){return a.concat(c.features||[]);},[])};
   if(!gj || (!gj.features && gj.type!=="Feature")) throw new Error("bad");
   bounds=gj; if(!save(K.bounds,bounds)) return; drawBounds(); toast("Boundaries loaded");
 }
 $("loadbtn").onclick=function(){ $("filein").click(); };
 $("filein").onchange=function(e){
   var f=e.target.files[0]; if(!f) return; e.target.value="";
-  toast("Reading "+f.name+"…", 8000);
+  toast("Reading "+f.name+"…",8000);
   var r=new FileReader();
   r.onload=function(){ try{
     if(/\.zip$/i.test(f.name)) shp(r.result).then(ingest).catch(function(){ toast("Couldn't read that shapefile zip"); });
@@ -1093,11 +1022,11 @@ $("clearbound").onclick=function(){ if(!bounds) return;
 function drawRuns(){
   workedLayer.clearLayers(); var w=swathPx();
   runs.forEach(function(r){ if(r.pts.length<2) return;
-    L.polyline(r.pts,{color:"#17D46A",weight:w,opacity:.72,lineCap:"round",lineJoin:"round"}).addTo(workedLayer); });
+    L.polyline(r.pts,{color:"#17D46A",weight:w,opacity:.75,lineCap:"round",lineJoin:"round"}).addTo(workedLayer); });
   stats(); renderRunList();
 }
 function hav(a,b){ var R=6371000,t1=a[0]*Math.PI/180,t2=b[0]*Math.PI/180,
-  dt=(b[0]-a[0])*Math.PI/180, dl=(b[1]-a[1])*Math.PI/180,
+  dt=(b[0]-a[0])*Math.PI/180,dl=(b[1]-a[1])*Math.PI/180,
   x=Math.sin(dt/2)*Math.sin(dt/2)+Math.cos(t1)*Math.cos(t2)*Math.sin(dl/2)*Math.sin(dl/2);
   return 2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); }
 function runLen(p){ var d=0; for(var i=1;i<p.length;i++) d+=hav(p[i-1],p[i]); return d; }
@@ -1128,7 +1057,7 @@ function setFollow(on){ follow=on; $("follow").classList.toggle("on",on); if(on&
 $("follow").onclick=function(){ setFollow(!follow); };
 function gpsBadge(a){ var g=$("gps");
   if(a==null){ g.className=""; g.innerHTML="<b>--</b>no fix"; return; }
-  g.className = a<=10?"ok":(a<=25?"":"bad");
+  g.className=a<=10?"ok":(a<=25?"":"bad");
   g.innerHTML="<b>±"+Math.round(a)+" m</b>"+(a<=10?"good":(a<=25?"fair":"poor")); }
 
 function onPos(p){
@@ -1137,7 +1066,7 @@ function onPos(p){
   if(!meMark){
     meAcc=L.circle(pt,{radius:lastAcc,color:"#35C4FF",weight:1,opacity:.5,fillColor:"#35C4FF",fillOpacity:.1}).addTo(liveLayer);
     meMark=L.circleMarker(pt,{radius:7,color:"#0E1116",weight:3,fillColor:"#FFFFFF",fillOpacity:1}).addTo(liveLayer);
-    if(!bounds && !imgRec) map.setView(pt,16);
+    if(!bounds) map.setView(pt,16);
   } else { meMark.setLatLng(pt); meAcc.setLatLng(pt).setRadius(lastAcc); }
   meMark.bringToFront();
   if(follow) map.panTo(pt,{animate:false});
@@ -1145,7 +1074,7 @@ function onPos(p){
     var last=cur.pts[cur.pts.length-1];
     if(!last || (hav(last,pt)>=3 && lastAcc<=50)){
       cur.pts.push(pt);
-      if(!curLine) curLine=L.polyline(cur.pts,{color:"#FFB020",weight:swathPx(),opacity:.85,lineCap:"round",lineJoin:"round"}).addTo(liveLayer);
+      if(!curLine) curLine=L.polyline(cur.pts,{color:"#FFB020",weight:swathPx(),opacity:.9,lineCap:"round",lineJoin:"round"}).addTo(liveLayer);
       else curLine.setLatLngs(cur.pts);
       cur.m=runLen(cur.pts); stats();
     }
@@ -1157,7 +1086,7 @@ function onErr(e){ gpsBadge(null);
 function startWatch(){
   if(!navigator.geolocation){ toast("This browser has no GPS support"); return; }
   if(!window.isSecureContext) toast("GPS needs an https:// address — this page must be hosted, not opened as a file",9000);
-  watchId=navigator.geolocation.watchPosition(onPos,onErr,{enableHighAccuracy:true,maximumAge:1000,timeout:20000});
+  navigator.geolocation.watchPosition(onPos,onErr,{enableHighAccuracy:true,maximumAge:1000,timeout:20000});
 }
 
 function wakeOn(){ if(!cfg.wake||!("wakeLock" in navigator)) return;
@@ -1171,7 +1100,8 @@ $("go").onclick=function(){
     document.body.classList.add("rec"); $("go").textContent="Stop"; $("statetext").textContent="Recording";
     setFollow(true); wakeOn(); toast("Recording — screen must stay on");
   } else {
-    rec=false; document.body.classList.remove("rec"); $("go").textContent="Start"; $("statetext").textContent="Stopped"; wakeOff();
+    rec=false; document.body.classList.remove("rec"); $("go").textContent="Start";
+    $("statetext").textContent="Stopped"; wakeOff();
     if(cur && cur.pts.length>=2){ cur.m=runLen(cur.pts); runs.push(cur); save(K.runs,runs);
       toast("Run saved — "+(cur.m/1000).toFixed(2)+" km"); }
     else toast("Run too short to save");
@@ -1186,15 +1116,6 @@ $("sheet").onclick=function(e){ if(e.target.id==="sheet") $("sheet").classList.r
 $("swath").value=cfg.swath;
 $("swath").onchange=function(){ var v=parseFloat(this.value); if(!(v>0)){ this.value=cfg.swath; return; }
   cfg.swath=v; save(K.cfg,cfg); reweight(); stats(); };
-
-$("basesw").classList.toggle("on",!!cfg.base);
-$("basesw").onclick=function(){
-  cfg.base=!cfg.base; this.classList.toggle("on",cfg.base); save(K.cfg,cfg);
-  if(cfg.base){
-    baseLayer=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,opacity:.75}).addTo(map);
-    baseLayer.bringToBack(); toast("Satellite on — needs reception");
-  } else if(baseLayer){ map.removeLayer(baseLayer); baseLayer=null; }
-};
 $("wakesw").classList.toggle("on",!!cfg.wake);
 $("wakesw").onclick=function(){ cfg.wake=!cfg.wake; this.classList.toggle("on",cfg.wake); save(K.cfg,cfg);
   if(cfg.wake&&rec) wakeOn(); else wakeOff(); };
@@ -1219,7 +1140,8 @@ $("clearall").onclick=function(){ if(!runs.length) return;
 
 $("bootbtn").onclick=function(){ $("boot").style.display="none"; startWatch(); };
 
-loadStoredImage();
+$("ver").textContent = "Version " + VERSION;
+setBase(cfg.base);
 drawBounds();
 drawRuns();
 if(!window.isSecureContext){
